@@ -7,18 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		82C44913270CECB500FFB37A /* YTMovidesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C44912270CECB500FFB37A /* YTMovidesApp.swift */; };
+		82C44913270CECB500FFB37A /* YTMoviesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C44912270CECB500FFB37A /* YTMoviesApp.swift */; };
 		82C44915270CECB500FFB37A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C44914270CECB500FFB37A /* ContentView.swift */; };
 		82C44917270CECBA00FFB37A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82C44916270CECBA00FFB37A /* Assets.xcassets */; };
 		82C4491A270CECBA00FFB37A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82C44919270CECBA00FFB37A /* Preview Assets.xcassets */; };
+		82C44922270CED0000FFB37A /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C44921270CED0000FFB37A /* Movie.swift */; };
+		82C44925270CED7500FFB37A /* GetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C44924270CED7500FFB37A /* GetRequest.swift */; };
+		82C44927270CED8600FFB37A /* NetworkErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C44926270CED8600FFB37A /* NetworkErrors.swift */; };
+		82C4492A270CEDD400FFB37A /* MoviesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C44929270CEDD400FFB37A /* MoviesManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		82C4490F270CECB500FFB37A /* YTMovides.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YTMovides.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		82C44912270CECB500FFB37A /* YTMovidesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YTMovidesApp.swift; sourceTree = "<group>"; };
+		82C4490F270CECB500FFB37A /* YTMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YTMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		82C44912270CECB500FFB37A /* YTMoviesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YTMoviesApp.swift; sourceTree = "<group>"; };
 		82C44914270CECB500FFB37A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		82C44916270CECBA00FFB37A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		82C44919270CECBA00FFB37A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		82C44921270CED0000FFB37A /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		82C44924270CED7500FFB37A /* GetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRequest.swift; sourceTree = "<group>"; };
+		82C44926270CED8600FFB37A /* NetworkErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrors.swift; sourceTree = "<group>"; };
+		82C44929270CEDD400FFB37A /* MoviesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,7 +43,7 @@
 		82C44906270CECB500FFB37A = {
 			isa = PBXGroup;
 			children = (
-				82C44911270CECB500FFB37A /* YTMovides */,
+				82C44911270CECB500FFB37A /* YTMovies */,
 				82C44910270CECB500FFB37A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,20 +51,23 @@
 		82C44910270CECB500FFB37A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				82C4490F270CECB500FFB37A /* YTMovides.app */,
+				82C4490F270CECB500FFB37A /* YTMovies.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		82C44911270CECB500FFB37A /* YTMovides */ = {
+		82C44911270CECB500FFB37A /* YTMovies */ = {
 			isa = PBXGroup;
 			children = (
-				82C44912270CECB500FFB37A /* YTMovidesApp.swift */,
+				82C44912270CECB500FFB37A /* YTMoviesApp.swift */,
+				82C44928270CEDC800FFB37A /* ViewModels */,
 				82C44914270CECB500FFB37A /* ContentView.swift */,
+				82C44923270CED6400FFB37A /* Networking */,
+				82C44920270CECF600FFB37A /* Models */,
 				82C44916270CECBA00FFB37A /* Assets.xcassets */,
 				82C44918270CECBA00FFB37A /* Preview Content */,
 			);
-			path = YTMovides;
+			path = YTMovies;
 			sourceTree = "<group>";
 		};
 		82C44918270CECBA00FFB37A /* Preview Content */ = {
@@ -67,12 +78,37 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		82C44920270CECF600FFB37A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				82C44921270CED0000FFB37A /* Movie.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		82C44923270CED6400FFB37A /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				82C44924270CED7500FFB37A /* GetRequest.swift */,
+				82C44926270CED8600FFB37A /* NetworkErrors.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		82C44928270CEDC800FFB37A /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				82C44929270CEDD400FFB37A /* MoviesManager.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		82C4490E270CECB500FFB37A /* YTMovides */ = {
+		82C4490E270CECB500FFB37A /* YTMovies */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 82C4491D270CECBA00FFB37A /* Build configuration list for PBXNativeTarget "YTMovides" */;
+			buildConfigurationList = 82C4491D270CECBA00FFB37A /* Build configuration list for PBXNativeTarget "YTMovies" */;
 			buildPhases = (
 				82C4490B270CECB500FFB37A /* Sources */,
 				82C4490C270CECB500FFB37A /* Frameworks */,
@@ -82,9 +118,9 @@
 			);
 			dependencies = (
 			);
-			name = YTMovides;
+			name = YTMovies;
 			productName = YTMovides;
-			productReference = 82C4490F270CECB500FFB37A /* YTMovides.app */;
+			productReference = 82C4490F270CECB500FFB37A /* YTMovies.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -102,7 +138,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 82C4490A270CECB500FFB37A /* Build configuration list for PBXProject "YTMovides" */;
+			buildConfigurationList = 82C4490A270CECB500FFB37A /* Build configuration list for PBXProject "YTMovies" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -115,7 +151,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				82C4490E270CECB500FFB37A /* YTMovides */,
+				82C4490E270CECB500FFB37A /* YTMovies */,
 			);
 		};
 /* End PBXProject section */
@@ -137,8 +173,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82C44925270CED7500FFB37A /* GetRequest.swift in Sources */,
 				82C44915270CECB500FFB37A /* ContentView.swift in Sources */,
-				82C44913270CECB500FFB37A /* YTMovidesApp.swift in Sources */,
+				82C44927270CED8600FFB37A /* NetworkErrors.swift in Sources */,
+				82C44913270CECB500FFB37A /* YTMoviesApp.swift in Sources */,
+				82C4492A270CEDD400FFB37A /* MoviesManager.swift in Sources */,
+				82C44922270CED0000FFB37A /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,7 +308,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"YTMovides/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"YTMovies/Preview Content\"";
 				DEVELOPMENT_TEAM = 9C9R36NYWY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -298,7 +338,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"YTMovides/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"YTMovies/Preview Content\"";
 				DEVELOPMENT_TEAM = 9C9R36NYWY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -324,7 +364,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		82C4490A270CECB500FFB37A /* Build configuration list for PBXProject "YTMovides" */ = {
+		82C4490A270CECB500FFB37A /* Build configuration list for PBXProject "YTMovies" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				82C4491B270CECBA00FFB37A /* Debug */,
@@ -333,7 +373,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		82C4491D270CECBA00FFB37A /* Build configuration list for PBXNativeTarget "YTMovides" */ = {
+		82C4491D270CECBA00FFB37A /* Build configuration list for PBXNativeTarget "YTMovies" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				82C4491E270CECBA00FFB37A /* Debug */,
