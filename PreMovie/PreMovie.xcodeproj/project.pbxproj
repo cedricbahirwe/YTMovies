@@ -20,6 +20,7 @@
 		82B16C922711F70F007BDB16 /* YTSMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B16C912711F70F007BDB16 /* YTSMovie.swift */; };
 		82B16C952711F733007BDB16 /* NetworkingErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B16C942711F733007BDB16 /* NetworkingErrors.swift */; };
 		82B16C972711F745007BDB16 /* GetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B16C962711F745007BDB16 /* GetRequest.swift */; };
+		82B16C9A27122561007BDB16 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B16C9927122561007BDB16 /* Colors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		82B16C912711F70F007BDB16 /* YTSMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YTSMovie.swift; sourceTree = "<group>"; };
 		82B16C942711F733007BDB16 /* NetworkingErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingErrors.swift; sourceTree = "<group>"; };
 		82B16C962711F745007BDB16 /* GetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRequest.swift; sourceTree = "<group>"; };
+		82B16C9927122561007BDB16 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 			children = (
 				82B16C542711F5C5007BDB16 /* PreMovieApp.swift */,
 				82B16C552711F5C5007BDB16 /* ContentView.swift */,
+				82B16C9827122554007BDB16 /* Extensions */,
 				82B16C932711F729007BDB16 /* Networking */,
 				82B16C902711F6F7007BDB16 /* Models */,
 				82B16C562711F5CD007BDB16 /* Assets.xcassets */,
@@ -164,6 +167,14 @@
 				82B16C962711F745007BDB16 /* GetRequest.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		82B16C9827122554007BDB16 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82B16C9927122561007BDB16 /* Colors.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,6 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				82B16C7E2711F5CD007BDB16 /* ContentView.swift in Sources */,
+				82B16C9A27122561007BDB16 /* Colors.swift in Sources */,
 				82B16C972711F745007BDB16 /* GetRequest.swift in Sources */,
 				82B16C7C2711F5CD007BDB16 /* PreMovieApp.swift in Sources */,
 				82B16C952711F733007BDB16 /* NetworkingErrors.swift in Sources */,

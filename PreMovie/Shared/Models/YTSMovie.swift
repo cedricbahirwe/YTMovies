@@ -9,15 +9,15 @@ import Foundation
 
 // MARK: - MoviesResponse
 struct MoviesResponse: Decodable {
-//    let status: Stat
+    let status: Stat
     let statusMessage: String
-//    let data: MoviesData
+    let data: MoviesData
     let meta: Meta
 
     enum CodingKeys: String, CodingKey {
-//        case status
+        case status
         case statusMessage = "status_message"
-//        case data
+        case data
         case meta = "@meta"
     }
 }
@@ -29,8 +29,8 @@ struct MoviesData: Decodable {
 
     enum CodingKeys: String, CodingKey {
         case movieCount = "movie_count"
-        case limit
         case pageNumber = "page_number"
+        case limit
         case movies
     }
 }
@@ -44,17 +44,22 @@ struct Movie: Decodable, Identifiable, Equatable {
     let id: Int
     let url: String
     let imdbCode, title, titleEnglish, titleLong: String
+    
     let slug: String
     let year: Int
     let rating: Double
     let runtime: Int
-    let genres: [String]
-    let summary, descriptionFull, synopsis, ytTrailerCode: String
-    let language: Language
+    let summary: String
+    let genres: [String]?
+    
+    let descriptionFull, synopsis, ytTrailerCode: String
+    let state: Stat
+    let language: String
     let mpaRating: MpaRating
+    
     let backgroundImage, backgroundImageOriginal, smallCoverImage, mediumCoverImage: String
     let largeCoverImage: String
-    let state: Stat
+    
     let torrents: [Torrent]
     let dateUploaded: String
     let dateUploadedUnix: Int
@@ -65,26 +70,26 @@ struct Movie: Decodable, Identifiable, Equatable {
         case title
         case titleEnglish = "title_english"
         case titleLong = "title_long"
-        case slug, year, rating, runtime, genres, summary
+        
+        case slug, year, rating, runtime, summary, genres
+        
         case descriptionFull = "description_full"
         case synopsis
         case ytTrailerCode = "yt_trailer_code"
         case language
         case mpaRating = "mpa_rating"
+        case state
+        
         case backgroundImage = "background_image"
         case backgroundImageOriginal = "background_image_original"
         case smallCoverImage = "small_cover_image"
         case mediumCoverImage = "medium_cover_image"
         case largeCoverImage = "large_cover_image"
-        case state, torrents
+        
+        case torrents
         case dateUploaded = "date_uploaded"
         case dateUploadedUnix = "date_uploaded_unix"
     }
-}
-
-enum Language: String, Decodable {
-    case en = "en"
-    case es = "es"
 }
 
 enum MpaRating: String, Decodable {
@@ -101,7 +106,7 @@ struct Torrent: Decodable {
     let url: String
     let hash: String
     let quality: Quality
-    let type: TypeEnum
+    let type: String
     let seeds, peers: Int
     let size: String
     let sizeBytes: Int
@@ -116,13 +121,10 @@ struct Torrent: Decodable {
     }
 }
 
+// MARK: - Quality
 enum Quality: String, Decodable {
     case the1080P = "1080p"
     case the720P = "720p"
-}
-
-enum TypeEnum: String, Decodable {
-    case web = "web"
 }
 
 // MARK: - Meta

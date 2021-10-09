@@ -15,27 +15,34 @@ struct ContentView: View {
     @State
     private var selectedMovie: Movie? = nil
     var body: some View {
-        NavigationView {
-            List(moviesManager.movies) { movie in
-                VStack(alignment: .leading) {
-                    Text(movie.title).bold()
-                    Text(movie.descriptionFull)
-                        .lineLimit(selectedMovie == movie ? nil : 4)
+        VStack {
+            HStack {
+                Button {
+                    // Menu
+                } label: {
+                    Image(systemName: "line.horizontal.3.circle")
+                        .imageScale(.large)
                 }
-                .padding()
-                .onTapGesture {
-                        if selectedMovie == movie {
-                            selectedMovie = nil
-                        } else {
-                            selectedMovie = movie
-                        }
+                Spacer()
+                Text("Action Movies")
+                    .font(.system(size: 20, weight: .semibold, design: .monospaced))
+                Spacer()
+                Button {
+                    // Menu
+                } label: {
+                    Image(systemName: "magnifyingglass")
+                        .imageScale(.large)
                 }
                 
             }
-            .navigationTitle("Movies")
-            .onAppear {
-                moviesManager.getAllMovies()
-            }
+            .padding(10)
+            
+            Spacer()
+        }
+        .background(Color.primaryBackground.ignoresSafeArea())
+        .foregroundColor(.white.opacity(0.9))
+        .onAppear {
+            moviesManager.getAllMovies()
         }
     }
 }
@@ -61,7 +68,7 @@ class MoviesManager: ObservableObject {
                 case .success(let response):
                     DispatchQueue.main.async {
                         print(response)
-//                        self?.movies = response.data.movies
+                        self?.movies = response.data.movies
                     }
                 case .failure(let error):
                     print(error.message)

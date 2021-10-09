@@ -59,7 +59,7 @@ struct GetRequest<ResponseStruct: Decodable>{
                         completion(.success(data))
                     } catch let error as NSError{
                         // If server's response structure is different from local structure, error occurs
-                        print("An error occured when trying to decode the data >>>", error.localizedDescription)
+                        print("An error occured when trying to decode the data >>>", error.debugDescription)
                         completion(.failure(.unableToDecodeData))
                     }
                 }
