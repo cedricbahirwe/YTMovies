@@ -1,14 +1,14 @@
 //
-//  YTMoviesApp.swift
-//  YTMovides
+//  PreMovieApp.swift
+//  Shared
 //
-//  Created by Cédric Bahirwe on 05/10/2021.
+//  Created by Cédric Bahirwe on 09/10/2021.
 //
 
 import SwiftUI
 
 @main
-struct YTMoviesApp: App {
+struct PreMovieApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()

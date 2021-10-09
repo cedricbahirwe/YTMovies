@@ -1,8 +1,8 @@
 //
-//  NetworkErrors.swift
-//  YTMovides
+//  NetworkingErrors.swift
+//  PreMovie (iOS)
 //
-//  Created by Cédric Bahirwe on 05/10/2021.
+//  Created by Cédric Bahirwe on 09/10/2021.
 //
 
 import Foundation

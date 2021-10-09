@@ -1,29 +1,26 @@
 //
 //  GetRequest.swift
-//  YTMovides
+//  PreMovie (iOS)
 //
-//  Created by Cédric Bahirwe on 05/10/2021.
+//  Created by Cédric Bahirwe on 09/10/2021.
 //
 
 import Foundation
 
-
 struct GetRequest<ResponseStruct: Decodable>{
     var routeUrl: URL
     
-    init(_ routeString: String){
-        guard let url =  URL(string: routeString) else {
-            fatalError("BASE_URL_ERROR_MESSAGE")
+    init(_ route: String){
+        guard let url =  URL(string: route) else {
+            fatalError("Error with url")
         }
         routeUrl = url
-        
-        print("Hitting: ", routeUrl)
     }
     
     func get(headers: [String: String] = [:],
              completion: @escaping(Result<ResponseStruct, NetworkErrors>) -> Void){
         
-        var request = URLRequest(url: self.routeUrl)
+        var request = URLRequest(url: routeUrl)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         headers.forEach { request.addValue($1, forHTTPHeaderField: $0) }
