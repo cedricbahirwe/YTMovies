@@ -60,7 +60,8 @@ class MoviesManager: ObservableObject {
                 switch result {
                 case .success(let response):
                     DispatchQueue.main.async {
-                        self?.movies = response.data.movies
+                        print(response)
+//                        self?.movies = response.data.movies
                     }
                 case .failure(let error):
                     print(error.message)

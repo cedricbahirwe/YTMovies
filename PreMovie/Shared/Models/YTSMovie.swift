@@ -8,22 +8,22 @@
 import Foundation
 
 // MARK: - MoviesResponse
-struct MoviesResponse: Codable {
-    let status: Stat
+struct MoviesResponse: Decodable {
+//    let status: Stat
     let statusMessage: String
-    let data: MoviesData
+//    let data: MoviesData
     let meta: Meta
 
     enum CodingKeys: String, CodingKey {
-        case status
+//        case status
         case statusMessage = "status_message"
-        case data
+//        case data
         case meta = "@meta"
     }
 }
 
 // MARK: - MoviesData
-struct MoviesData: Codable {
+struct MoviesData: Decodable {
     let movieCount, limit, pageNumber: Int
     let movies: [Movie]
 
@@ -36,7 +36,7 @@ struct MoviesData: Codable {
 }
 
 // MARK: - Movie
-struct Movie: Codable, Identifiable, Equatable {
+struct Movie: Decodable, Identifiable, Equatable {
     static func == (lhs: Movie, rhs: Movie) -> Bool {
         lhs.id == rhs.id
     }
@@ -82,22 +82,22 @@ struct Movie: Codable, Identifiable, Equatable {
     }
 }
 
-enum Language: String, Codable {
+enum Language: String, Decodable {
     case en = "en"
     case es = "es"
 }
 
-enum MpaRating: String, Codable {
+enum MpaRating: String, Decodable {
     case empty = ""
     case r = "R"
 }
 
-enum Stat: String, Codable {
+enum Stat: String, Decodable {
     case ok = "ok"
 }
 
 // MARK: - Torrent
-struct Torrent: Codable {
+struct Torrent: Decodable {
     let url: String
     let hash: String
     let quality: Quality
@@ -116,17 +116,17 @@ struct Torrent: Codable {
     }
 }
 
-enum Quality: String, Codable {
+enum Quality: String, Decodable {
     case the1080P = "1080p"
     case the720P = "720p"
 }
 
-enum TypeEnum: String, Codable {
+enum TypeEnum: String, Decodable {
     case web = "web"
 }
 
 // MARK: - Meta
-struct Meta: Codable {
+struct Meta: Decodable {
     let serverTime: Int
     let serverTimezone: String
     let apiVersion: Int
