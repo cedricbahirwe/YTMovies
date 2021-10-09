@@ -6,14 +6,17 @@
 //
 
 import SwiftUI
-
+import SDWebImageSwiftUI
 
 struct ContentView: View {
     @StateObject
     private var moviesManager = MoviesManager()
     
+    private let size = UIScreen.main.bounds.size
+    
     @State
     private var selectedMovie: Movie? = nil
+    
     var body: some View {
         VStack {
             HStack {
@@ -36,14 +39,71 @@ struct ContentView: View {
                 
             }
             .padding(10)
-            
-            Spacer()
+            GeometryReader { geo in
+
+                ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 0) {
+//                    ForEach(0..<10) { i in
+                    ForEach(moviesManager.movies.isEmpty ? [.exampleMovie] : moviesManager.movies) { movie in
+                        
+                            ZStack {
+                                WebImage(url: URL(string: movie.largeCoverImage))
+                                    .resizable()
+                                    .placeholder(Image("smoke"))
+                                    .transition(.fade(duration: 0.5))
+                                    .scaledToFill()
+                                    .frame(width: geo.size.width)
+                                    .clipped()
+//                                    .frame(width: geo.size.width)
+//                                    .frame(maxHeight: geo.size.height)
+//                                    .blur(radius: 5)
+                                    .blur(radius: 4, opaque: false)
+                                
+                                VStack {
+                                    ZStack(alignment: .topTrailing) {
+                                        WebImage(url: URL(string: movie.largeCoverImage))
+                                            .resizable()
+                                            .placeholder(Image("smoke"))
+                                            .transition(.fade(duration: 0.5))
+                                            .scaledToFill()
+                                            .frame(maxWidth: size.width*0.8)
+                                            .clipped()
+                                            .shadow(radius: 10)
+
+                                        Text(movie.rating.description)
+                                            .font(.title2.weight(.semibold))
+                                            .frame(width: 60, height: 60)
+                                            .background(Color.green)
+                                            .clipShape(Circle())
+                                            .offset(x: 30, y: 30)
+
+                                    }
+
+                                    VStack {
+                                        Text(movie.title)
+                                            .font(.system(.title2, design: .monospaced))
+                                            .fontWeight(.semibold)
+                                        HStack {
+                                            Text(movie.mpaRating)
+                                            Text("1h 49 min")
+                                        }
+                                        .font(.system(.title2, design: .monospaced))
+                                        .foregroundColor(.gray)
+                                    }
+                                }
+                                .padding(.top, 50 + geo.safeAreaInsets.top)
+                            }
+                            .frame(width: geo.size.width)
+
+                        }
+                    }
+                }
+            }
+            .ignoresSafeArea(.all, edges: .bottom)
         }
         .background(Color.primaryBackground.ignoresSafeArea())
         .foregroundColor(.white.opacity(0.9))
-        .onAppear {
-            moviesManager.getAllMovies()
-        }
+        .onAppear(perform: moviesManager.getAllMovies)
     }
 }
 
@@ -58,7 +118,6 @@ class MoviesManager: ObservableObject {
     private(set) var movies: [Movie] = []
     
     
-    
     // Returns a max of 50 movies
     public func getAllMovies() {
         let url = "https://yts.mx/api/v2/list_movies.json"
@@ -69,6 +128,7 @@ class MoviesManager: ObservableObject {
                     DispatchQueue.main.async {
                         print(response)
                         self?.movies = response.data.movies
+                        print(response.data.movies.first)
                     }
                 case .failure(let error):
                     print(error.message)

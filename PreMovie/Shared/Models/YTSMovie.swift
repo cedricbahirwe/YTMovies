@@ -55,7 +55,7 @@ struct Movie: Decodable, Identifiable, Equatable {
     let descriptionFull, synopsis, ytTrailerCode: String
     let state: Stat
     let language: String
-    let mpaRating: MpaRating
+    let mpaRating: String
     
     let backgroundImage, backgroundImageOriginal, smallCoverImage, mediumCoverImage: String
     let largeCoverImage: String
@@ -90,11 +90,6 @@ struct Movie: Decodable, Identifiable, Equatable {
         case dateUploaded = "date_uploaded"
         case dateUploadedUnix = "date_uploaded_unix"
     }
-}
-
-enum MpaRating: String, Decodable {
-    case empty = ""
-    case r = "R"
 }
 
 enum Stat: String, Decodable {
@@ -140,4 +135,12 @@ struct Meta: Decodable {
         case apiVersion = "api_version"
         case executionTime = "execution_time"
     }
+}
+
+
+extension Movie {
+    static let exampleMovie = Movie(id: 36531, url: "https://yts.mx/movies/no-regret-1993", imdbCode: "tt0137129", title: "No Regret", titleEnglish: "No Regret", titleLong: "No Regret (1993)", slug: "no-regret-1993", year: 1993, rating: 7.4, runtime: 0, summary: "Five HIV positive gay black men discuss their struggles with the disease.", genres: nil, descriptionFull: "Five HIV positive gay black men discuss their struggles with the disease.", synopsis: "Five HIV positive gay black men discuss their struggles with the disease.", ytTrailerCode: "", state: Stat.ok, language: "en", mpaRating: "", backgroundImage: "https://yts.mx/assets/images/movies/no_regret_1993/background.jpg", backgroundImageOriginal: "https://yts.mx/assets/images/movies/no_regret_1993/background.jpg", smallCoverImage: "https://yts.mx/assets/images/movies/no_regret_1993/small-cover.jpg", mediumCoverImage: "https://yts.mx/assets/images/movies/no_regret_1993/medium-cover.jpg", largeCoverImage: "https://yts.mx/assets/images/movies/no_regret_1993/large-cover.jpg",
+                                    torrents: [
+                                        Torrent(url: "https://yts.mx/torrent/download/165931505DCEC38A9CFCF6AA4CFE5402A93D2444", hash: "165931505DCEC38A9CFCF6AA4CFE5402A93D2444", quality: Quality.the720P, type: "bluray", seeds: 40, peers: 12, size: "352.01 MB", sizeBytes: 369109238, dateUploaded: "2021-10-09 15:16:19", dateUploadedUnix: 1633785379),
+                                        Torrent(url: "https://yts.mx/torrent/download/B58C4FFF74EE9FE4B49C391C97EF96957398DDD5", hash: "B58C4FFF74EE9FE4B49C391C97EF96957398DDD5", quality: Quality.the1080P, type: "bluray", seeds: 0, peers: 0, size: "652.58 MB", sizeBytes: 684279726, dateUploaded: "2021-10-09 15:42:15", dateUploadedUnix: 1633786935)], dateUploaded: "2021-10-09 15:16:19", dateUploadedUnix: 1633785379)
 }
