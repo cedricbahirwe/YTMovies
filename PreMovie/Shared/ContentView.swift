@@ -42,59 +42,12 @@ struct ContentView: View {
             GeometryReader { geo in
 
                 ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 0) {
-//                    ForEach(0..<10) { i in
-                    ForEach(moviesManager.movies.isEmpty ? [.exampleMovie] : moviesManager.movies) { movie in
-                        
-                            ZStack {
-                                WebImage(url: URL(string: movie.largeCoverImage))
-                                    .resizable()
-                                    .placeholder(Image("smoke"))
-                                    .transition(.fade(duration: 0.5))
-                                    .scaledToFill()
-                                    .frame(width: geo.size.width)
-                                    .clipped()
-//                                    .frame(width: geo.size.width)
-//                                    .frame(maxHeight: geo.size.height)
-//                                    .blur(radius: 5)
-                                    .blur(radius: 4, opaque: false)
-                                
-                                VStack {
-                                    ZStack(alignment: .topTrailing) {
-                                        WebImage(url: URL(string: movie.largeCoverImage))
-                                            .resizable()
-                                            .placeholder(Image("smoke"))
-                                            .transition(.fade(duration: 0.5))
-                                            .scaledToFill()
-                                            .frame(maxWidth: size.width*0.8)
-                                            .clipped()
-                                            .shadow(radius: 10)
-
-                                        Text(movie.rating.description)
-                                            .font(.title2.weight(.semibold))
-                                            .frame(width: 60, height: 60)
-                                            .background(Color.green)
-                                            .clipShape(Circle())
-                                            .offset(x: 30, y: 30)
-
-                                    }
-
-                                    VStack {
-                                        Text(movie.title)
-                                            .font(.system(.title2, design: .monospaced))
-                                            .fontWeight(.semibold)
-                                        HStack {
-                                            Text(movie.mpaRating)
-                                            Text("1h 49 min")
-                                        }
-                                        .font(.system(.title2, design: .monospaced))
-                                        .foregroundColor(.gray)
-                                    }
-                                }
-                                .padding(.top, 50 + geo.safeAreaInsets.top)
-                            }
-                            .frame(width: geo.size.width)
-
+                    HStack(spacing: 0) {
+                        //                    ForEach(0..<10) { i in
+                        ForEach(moviesManager.movies.isEmpty ? [.exampleMovie] : moviesManager.movies) { movie in
+                            
+                            MoviePreview(of: movie, size: geo.size)
+                            
                         }
                     }
                 }
@@ -138,3 +91,64 @@ class MoviesManager: ObservableObject {
     }
 }
 
+
+struct MoviePreview: View {
+    init(of movie: Movie, size: CGSize) {
+        self.movie = movie
+        self.size = size
+    }
+    
+    let movie: Movie
+    let size: CGSize
+    var body: some View {
+        ZStack {
+            WebImage(url: URL(string: movie.largeCoverImage))
+                .resizable()
+                .placeholder(Image("smoke"))
+                .transition(.fade(duration: 0.5))
+                .scaledToFill()
+                .frame(width: size.width)
+                .clipped()
+            //                                    .frame(width: geo.size.width)
+            //                                    .frame(maxHeight: geo.size.height)
+            //                                    .blur(radius: 5)
+                .blur(radius: 4, opaque: false)
+            
+            VStack {
+                ZStack(alignment: .topTrailing) {
+                    WebImage(url: URL(string: movie.largeCoverImage))
+                        .resizable()
+                        .placeholder(Image("smoke"))
+                        .transition(.fade(duration: 0.5))
+                        .scaledToFill()
+                        .frame(maxWidth: size.width*0.8)
+                        .clipped()
+                        .shadow(radius: 10)
+                    
+                    Text(movie.rating.description)
+                        .font(.title2.weight(.semibold))
+                        .frame(width: 60, height: 60)
+                        .background(Color.green)
+                        .clipShape(Circle())
+                        .offset(x: 30, y: 30)
+                    
+                }
+                
+                VStack {
+                    Text(movie.title)
+                        .font(.system(.title2, design: .monospaced))
+                        .fontWeight(.semibold)
+                    HStack {
+                        Text(movie.mpaRating)
+                        Text("1h 49 min")
+                    }
+                    .font(.system(.title2, design: .monospaced))
+                    .foregroundColor(.gray)
+                }
+                .padding()
+            }
+            .padding(.top, 40)
+        }
+        .frame(width: size.width)
+    }
+}

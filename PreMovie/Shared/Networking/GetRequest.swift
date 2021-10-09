@@ -42,24 +42,24 @@ struct GetRequest<ResponseStruct: Decodable>{
                     if let responseString = String(bytes: data!, encoding: .utf8) {
                         // The response body seems to be a valid UTF-8 string, so print that.
                         completion(.failure(.unknownError(message: responseString)))
-                        print(responseString)
+//                        print(responseString)
                     } else {
                         // Otherwise print a hex dump of the body.
                         completion(.failure(.serverError))
-                        print(data! as NSData)
+//                        print(data! as NSData)
                     }
                 } else{
                     // Request is successful and we've gotten the data, we try to decode the data here
                     do{
-                        if let json = try? JSONSerialization.jsonObject(with: data!, options: []){
-                            print(json)
-                        }
+//                        if let json = try? JSONSerialization.jsonObject(with: data!, options: []){
+//                            print(json)
+//                        }
                         let decoder = JSONDecoder()
                         let data = try decoder.decode(ResponseStruct.self, from: data!)
                         completion(.success(data))
                     } catch let error as NSError{
                         // If server's response structure is different from local structure, error occurs
-                        print("An error occured when trying to decode the data >>>", error.debugDescription)
+                        print("An error occured when trying to decode the data: ", error.debugDescription)
                         completion(.failure(.unableToDecodeData))
                     }
                 }
