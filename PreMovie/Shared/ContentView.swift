@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 
 struct ContentView: View {
     @StateObject
@@ -17,30 +16,29 @@ struct ContentView: View {
     @State
     private var selectedMovie: Movie? = nil
     
+    @Namespace
+    private var animation
+    
+    private var navigationBar: some View {
+        HStack {
+            menuButton
+            Spacer()
+            if let movie = selectedMovie {
+                navTitle(movie.title)
+            } else {
+                navTitle("Action Movies")
+            }
+            Spacer()
+            searchButton
+        }
+    }
+    
     var body: some View {
         VStack {
-            HStack {
-                Button {
-                    // Menu
-                } label: {
-                    Image(systemName: "line.horizontal.3.circle")
-                        .imageScale(.large)
-                }
-                Spacer()
-                Text("Action Movies")
-                    .font(.system(size: 20, weight: .semibold, design: .monospaced))
-                Spacer()
-                Button {
-                    // Menu
-                } label: {
-                    Image(systemName: "magnifyingglass")
-                        .imageScale(.large)
-                }
-                
-            }
-            .padding(10)
+            navigationBar
+                .padding(10)
+            
             GeometryReader { geo in
-
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 0) {
                         //                    ForEach(0..<10) { i in
@@ -53,6 +51,7 @@ struct ContentView: View {
                 }
             }
             .ignoresSafeArea(.all, edges: .bottom)
+//            .redacted(reason: moviesManager.movies.isEmpty ? .placeholder : [])
         }
         .background(Color.primaryBackground.ignoresSafeArea())
         .foregroundColor(.white.opacity(0.9))
@@ -66,89 +65,47 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-class MoviesManager: ObservableObject {
-    @Published
-    private(set) var movies: [Movie] = []
+extension ContentView {
     
-    
-    // Returns a max of 50 movies
-    public func getAllMovies() {
-        let url = "https://yts.mx/api/v2/list_movies.json"
-        GetRequest<MoviesResponse>(url)
-            .get { [weak self] result in
-                switch result {
-                case .success(let response):
-                    DispatchQueue.main.async {
-                        print(response)
-                        self?.movies = response.data.movies
-                        print(response.data.movies.first)
-                    }
-                case .failure(let error):
-                    print(error.message)
-                }
-            }
-            
-    }
-}
-
-
-struct MoviePreview: View {
-    init(of movie: Movie, size: CGSize) {
-        self.movie = movie
-        self.size = size
+    private func navTitle(_ title: String) -> some View {
+        Text(title)
+            .font(.system(size: 20, weight: .semibold, design: .monospaced))
+            .lineLimit(1)
+            .minimumScaleFactor(0.9)
+            .truncationMode(.tail)
+            .transition(.flipFromBottom)
     }
     
-    let movie: Movie
-    let size: CGSize
-    var body: some View {
-        ZStack {
-            WebImage(url: URL(string: movie.largeCoverImage))
-                .resizable()
-                .placeholder(Image("smoke"))
-                .transition(.fade(duration: 0.5))
-                .scaledToFill()
-                .frame(width: size.width)
-                .clipped()
-            //                                    .frame(width: geo.size.width)
-            //                                    .frame(maxHeight: geo.size.height)
-            //                                    .blur(radius: 5)
-                .blur(radius: 4, opaque: false)
-            
-            VStack {
-                ZStack(alignment: .topTrailing) {
-                    WebImage(url: URL(string: movie.largeCoverImage))
-                        .resizable()
-                        .placeholder(Image("smoke"))
-                        .transition(.fade(duration: 0.5))
-                        .scaledToFill()
-                        .frame(maxWidth: size.width*0.8)
-                        .clipped()
-                        .shadow(radius: 10)
-                    
-                    Text(movie.rating.description)
-                        .font(.title2.weight(.semibold))
-                        .frame(width: 60, height: 60)
-                        .background(Color.green)
-                        .clipShape(Circle())
-                        .offset(x: 30, y: 30)
-                    
-                }
-                
-                VStack {
-                    Text(movie.title)
-                        .font(.system(.title2, design: .monospaced))
-                        .fontWeight(.semibold)
-                    HStack {
-                        Text(movie.mpaRating)
-                        Text("1h 49 min")
-                    }
-                    .font(.system(.title2, design: .monospaced))
-                    .foregroundColor(.gray)
-                }
-                .padding()
-            }
-            .padding(.top, 40)
+    private var searchButton: some View {
+        Button {
+            // Search
+        } label: {
+            Image(systemName: "magnifyingglass")
+                .imageScale(.large)
         }
-        .frame(width: size.width)
+    }
+    
+    private var menuButton: some View {
+        if let _ = selectedMovie {
+            return Button {
+                withAnimation {
+                    selectedMovie = nil
+                }
+            } label: {
+                Image(systemName: "arrow.left")
+                    .imageScale(.large)
+            }
+            .transition(.asymmetric(insertion: .move(edge: .leading),
+                                    removal: .move(edge: .trailing)))
+        } else {
+            return Button {
+                // Menu
+            } label: {
+                Image(systemName: "line.horizontal.3.circle")
+                    .imageScale(.large)
+            }
+            .transition(.asymmetric(insertion: .move(edge: .trailing),
+                                    removal: .move(edge: .leading)))
+        }
     }
 }
