@@ -39,19 +39,30 @@ struct ContentView: View {
                 .padding(10)
             
             GeometryReader { geo in
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 0) {
-                        //                    ForEach(0..<10) { i in
-                        ForEach(moviesManager.movies.isEmpty ? [.exampleMovie] : moviesManager.movies) { movie in
-                            
-                            MoviePreview(of: movie, size: geo.size)
-                            
+                ZStack {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 0) {
+                            //                    ForEach(0..<10) { i in
+                            ForEach(moviesManager.movies.isEmpty ? [.exampleMovie] : moviesManager.movies) { movie in
+                                
+                                MoviePreview(of: movie, size: geo.size, animation: animation) { movie in
+                                    withAnimation {
+                                        selectedMovie = movie
+                                    }
+                                }
+                            }
                         }
+                    }
+                    
+                    if let selectedMovie = selectedMovie {
+                        MovieDetailView(movie: selectedMovie,
+                                        animation: animation)
+                        
                     }
                 }
             }
             .ignoresSafeArea(.all, edges: .bottom)
-//            .redacted(reason: moviesManager.movies.isEmpty ? .placeholder : [])
+            .redacted(reason: moviesManager.movies.isEmpty ? .placeholder : [])
         }
         .background(Color.primaryBackground.ignoresSafeArea())
         .foregroundColor(.white.opacity(0.9))
@@ -89,6 +100,7 @@ extension ContentView {
         if let _ = selectedMovie {
             return Button {
                 withAnimation {
+                    print("Nil")
                     selectedMovie = nil
                 }
             } label: {

@@ -9,13 +9,17 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct MoviePreview: View {
-    init(of movie: Movie, size: CGSize) {
+    init(of movie: Movie, size: CGSize, animation: Namespace.ID, onSelect: @escaping(Movie) -> ()) {
         self.movie = movie
         self.size = size
+        self.animation = animation
+        self.didSelect = onSelect
     }
     
     let movie: Movie
     let size: CGSize
+    var animation: Namespace.ID
+    var didSelect: (Movie) -> ()
     var body: some View {
         ZStack {
             WebImage(url: URL(string: movie.largeCoverImage))
@@ -38,6 +42,9 @@ struct MoviePreview: View {
                         .frame(maxWidth: size.width*0.8)
                         .clipped()
                         .shadow(radius: 10)
+                        .matchedGeometryEffect(id: movie.largeCoverImage, in: animation)
+                        .onTapGesture { didSelect(movie) }
+                    
                     
                     Text(movie.rating.description)
                         .font(.title2.weight(.semibold))
@@ -45,13 +52,13 @@ struct MoviePreview: View {
                         .background(Color.green)
                         .clipShape(Circle())
                         .offset(x: 30, y: 30)
-                    
                 }
                 
                 VStack {
                     Text(movie.title)
                         .font(.system(.title2, design: .monospaced))
                         .fontWeight(.semibold)
+                        .matchedGeometryEffect(id: movie.title, in: animation)
                     HStack {
                         Text(movie.mpaRating)
                         Text("1h 49 min")
@@ -68,7 +75,10 @@ struct MoviePreview: View {
 }
 
 struct MoviePreview_Previews: PreviewProvider {
+    @Namespace static var animate
     static var previews: some View {
-        MoviePreview(of: .exampleMovie, size: CGSize(width: 350, height: 600))
+        MoviePreview(of: .exampleMovie,
+                     size: CGSize(width: 350, height: 600),
+                     animation: animate) { _ in }
     }
 }
