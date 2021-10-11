@@ -100,7 +100,6 @@ extension ContentView {
         if let _ = selectedMovie {
             return Button {
                 withAnimation {
-                    print("Nil")
                     selectedMovie = nil
                 }
             } label: {

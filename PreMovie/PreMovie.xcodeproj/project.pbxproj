@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		826188D3271408EB00FF8289 /* vampire.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 826188D2271408EB00FF8289 /* vampire.mp4 */; };
+		826188D4271408EB00FF8289 /* vampire.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 826188D2271408EB00FF8289 /* vampire.mp4 */; };
 		82B16C6D2711F5CD007BDB16 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B16C6C2711F5CD007BDB16 /* Tests_iOS.swift */; };
 		82B16C6F2711F5CD007BDB16 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B16C6E2711F5CD007BDB16 /* Tests_iOSLaunchTests.swift */; };
 		82B16C792711F5CD007BDB16 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B16C782711F5CD007BDB16 /* Tests_macOS.swift */; };
@@ -47,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		826188D2271408EB00FF8289 /* vampire.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = vampire.mp4; sourceTree = "<group>"; };
 		82B16C542711F5C5007BDB16 /* PreMovieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreMovieApp.swift; sourceTree = "<group>"; };
 		82B16C552711F5C5007BDB16 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		82B16C562711F5CD007BDB16 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -117,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				82B16C542711F5C5007BDB16 /* PreMovieApp.swift */,
+				826188D2271408EB00FF8289 /* vampire.mp4 */,
 				82BDD6DE2713160B00A92F3C /* Views */,
 				82BDD6DB271315DF00A92F3C /* View Models */,
 				82B16C552711F5C5007BDB16 /* ContentView.swift */,
@@ -340,6 +344,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				826188D3271408EB00FF8289 /* vampire.mp4 in Resources */,
 				82B16C802711F5CD007BDB16 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -348,6 +353,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				826188D4271408EB00FF8289 /* vampire.mp4 in Resources */,
 				82B16C812711F5CD007BDB16 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

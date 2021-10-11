@@ -52,6 +52,7 @@ struct MoviePreview: View {
                         .background(Color.green)
                         .clipShape(Circle())
                         .offset(x: 30, y: 30)
+                        .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing)).combined(with: .opacity))
                 }
                 
                 VStack {
