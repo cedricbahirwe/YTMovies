@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		823D7EF327550E3D0091D2B2 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 823D7EF227550E3D0091D2B2 /* RxCocoa */; };
 		823D7EF527550E3D0091D2B2 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 823D7EF427550E3D0091D2B2 /* RxSwift */; };
+		823D7EF8275510CB0091D2B2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823D7EF7275510CB0091D2B2 /* Constants.swift */; };
 		826188D3271408EB00FF8289 /* vampire.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 826188D2271408EB00FF8289 /* vampire.mp4 */; };
 		826188D4271408EB00FF8289 /* vampire.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 826188D2271408EB00FF8289 /* vampire.mp4 */; };
 		82B16C6D2711F5CD007BDB16 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B16C6C2711F5CD007BDB16 /* Tests_iOS.swift */; };
@@ -51,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		823D7EF7275510CB0091D2B2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		826188D2271408EB00FF8289 /* vampire.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = vampire.mp4; sourceTree = "<group>"; };
 		82B16C542711F5C5007BDB16 /* PreMovieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreMovieApp.swift; sourceTree = "<group>"; };
 		82B16C552711F5C5007BDB16 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -109,6 +111,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		823D7EF6275510C30091D2B2 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				823D7EF7275510CB0091D2B2 /* Constants.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		82B16C4E2711F5C4007BDB16 = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +139,7 @@
 				82BDD6DB271315DF00A92F3C /* View Models */,
 				82B16C552711F5C5007BDB16 /* ContentView.swift */,
 				82BDD6E427131CC400A92F3C /* MovieDetailView.swift */,
+				823D7EF6275510C30091D2B2 /* Utilities */,
 				82B16C9827122554007BDB16 /* Extensions */,
 				82B16C932711F729007BDB16 /* Networking */,
 				82B16C902711F6F7007BDB16 /* Models */,
@@ -391,6 +402,7 @@
 				82B16C972711F745007BDB16 /* GetRequest.swift in Sources */,
 				82BDD6E527131CC400A92F3C /* MovieDetailView.swift in Sources */,
 				82B16C7C2711F5CD007BDB16 /* PreMovieApp.swift in Sources */,
+				823D7EF8275510CB0091D2B2 /* Constants.swift in Sources */,
 				82B16C952711F733007BDB16 /* NetworkingErrors.swift in Sources */,
 				82B16C922711F70F007BDB16 /* YTSMovie.swift in Sources */,
 				82BDD6DD271315EB00A92F3C /* MoviesManager.swift in Sources */,

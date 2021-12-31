@@ -13,10 +13,10 @@ struct MovieDetailView: View {
     let movie: Movie
     var animation: Namespace.ID
     
-    private
-    static let videoURL = Bundle.main.url(forResource: "vampire", withExtension: "mp4")!
-    
-    let player = AVPlayer(url: videoURL)
+//    private
+//    static let videoURL = Bundle.main.url(forResource: "vampire", withExtension: "mp4")!
+//    
+//    let player = AVPlayer(url: videoURL)
 
     
     @State private var isPlaying = false
@@ -25,53 +25,54 @@ struct MovieDetailView: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 0) {
-                ZStack {
-                    WebImage(url: URL(string: movie.largeCoverImage))
-                        .resizable()
-                        .placeholder(Image("smoke"))
-                        .scaledToFill()
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 250)
-                        .clipped()
-                        .matchedGeometryEffect(id: movie.largeCoverImage, in: animation)
-                    
-                    if isPlaying {
-                        
-                        VideoPlayer(player: player)
-                    } else {
-                        Button {
-                            isPlaying = true
-                            player.play()
-                            
-                        } label: {
-                            Image(systemName: "play")
-                                .imageScale(.large)
-                                .frame(width: 60, height: 60)
-                                .background(Color.green)
-                                .clipShape(Circle())
-                                .padding(4)
-                                .background(Color.white)
-                                .clipShape(Circle())
-                        }
-                    }
-                }
-                
+//                ZStack {
+//                    WebImage(url: URL(string: movie.largeCoverImage))
+//                        .resizable()
+//                        .placeholder(Image("smoke"))
+//                        .scaledToFill()
+//                        .frame(maxWidth: .infinity)
+//                        .frame(height: 250)
+//                        .clipped()
+//                        .matchedGeometryEffect(id: movie.largeCoverImage, in: animation)
+//
+//                    if isPlaying {
+//
+//                        VideoPlayer(player: player)
+//                    } else {
+//                        Button {
+//                            isPlaying = true
+//                            player.play()
+//
+//                        } label: {
+//                            Image(systemName: "play")
+//                                .imageScale(.large)
+//                                .frame(width: 60, height: 60)
+//                                .background(Color.green)
+//                                .clipShape(Circle())
+//                                .padding(4)
+//                                .background(Color.white)
+//                                .clipShape(Circle())
+//                        }
+//                    }
+//                }
+
                 if !orientation.isLandscape {
-                    
+
                     VStack(alignment: .leading) {
                         Text(movie.title)
                             .font(.system(.title, design: .monospaced))
                             .fontWeight(.bold)
-                        
+                            .foregroundColor(.red)
+
                         if let genres = movie.genres {
                             Text(genres.joined(separator: ","))
                                 .font(.system(.headline, design: .monospaced))
                                 .fontWeight(.bold)
                                 .foregroundColor(.gray)
                         }
-                        
+
                         HStack {
-                            
+
                             ForEach(0 ..< 5) { index in
                                 Image("smoke")
                                     .resizable()
@@ -83,10 +84,10 @@ struct MovieDetailView: View {
                                     .offset(x: -Double(index)*30)
                                     .zIndex(-Double(index))
                             }
-                            
+
                             Spacer()
                         }
-                        
+
                         Text(movie.descriptionFull)
                             .font(.system(.headline, design: .monospaced))
                             .opacity(0.8)
@@ -107,9 +108,9 @@ struct MovieDetailView: View {
             }
         }
         .foregroundColor(.white.opacity(0.9))
-        .onRotate { newOrientation in
-            orientation = newOrientation
-        }
+//        .onRotate { newOrientation in
+//            orientation = newOrientation
+//        }
         .background(Color.primaryBackground.ignoresSafeArea(.all, edges: .bottom))
     }
 }

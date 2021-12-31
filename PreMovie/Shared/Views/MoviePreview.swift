@@ -28,9 +28,9 @@ struct MoviePreview: View {
                 .scaledToFill()
                 .frame(width: size.width)
                 .clipped()
-            //                                    .frame(width: geo.size.width)
-            //                                    .frame(maxHeight: geo.size.height)
-            //                                    .blur(radius: 5)
+//                .frame(width: geo.size.width)
+//                .frame(maxHeight: geo.size.height)
+//                .blur(radius: 5)
                 .blur(radius: 4, opaque: false)
             
             VStack {

@@ -21,7 +21,7 @@ struct ContentView: View {
     
     private var navigationBar: some View {
         HStack {
-            menuButton
+            leadingNavigationButton
             Spacer()
             if let movie = selectedMovie {
                 navTitle(movie.title)
@@ -84,7 +84,7 @@ extension ContentView {
             .lineLimit(1)
             .minimumScaleFactor(0.9)
             .truncationMode(.tail)
-            .transition(.flipFromBottom)
+            .transition(.asymmetric(insertion: .fade(duration: 1.5), removal: .fade))
     }
     
     private var searchButton: some View {
@@ -96,27 +96,23 @@ extension ContentView {
         }
     }
     
-    private var menuButton: some View {
-        if let _ = selectedMovie {
-            return Button {
-                withAnimation {
-                    selectedMovie = nil
-                }
-            } label: {
+    private var leadingNavigationButton: some View {
+        Button {
+            withAnimation {
+                selectedMovie = nil
+            }
+        } label: {
+            if let _ = selectedMovie {
                 Image(systemName: "arrow.left")
                     .imageScale(.large)
-            }
-            .transition(.asymmetric(insertion: .move(edge: .leading),
-                                    removal: .move(edge: .trailing)))
-        } else {
-            return Button {
-                // Menu
-            } label: {
+                    .frame(width: 25, height: 25)
+            } else {
                 Image(systemName: "line.horizontal.3.circle")
                     .imageScale(.large)
+                    .frame(width: 25, height: 25)
             }
-            .transition(.asymmetric(insertion: .move(edge: .trailing),
-                                    removal: .move(edge: .leading)))
         }
+        .transition(.asymmetric(insertion: .move(edge: .leading),
+                                removal: .move(edge: .trailing)))
     }
 }
